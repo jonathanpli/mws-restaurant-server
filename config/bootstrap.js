@@ -1,3 +1,5 @@
+const data = require('../assets/data/restaurants');
+
 /**
  * Bootstrap
  * (sails.config.bootstrap)
@@ -9,9 +11,19 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = function(cb) {
-
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+module.exports.bootstrap = async function(cb) {
+  if (process.env.NODE_ENV === 'production') {
+    return cb();
+  }
+  
+  let count = await Restaurants.count();
+  if (count > 0) {
+    return cb();
+  }
+  
+  // Seed data
+  data.forEach(async (restaurant) => {
+    await Restaurants.create(restaurant);
+  });
   cb();
 };

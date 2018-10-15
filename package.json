@@ -1,11 +1,12 @@
 {
   "name": "Restaurant-Reviews",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "1.0.0",
+  "description": "A fork of the server for MWS restaurant reviews application",
   "keywords": [],
   "dependencies": {
     "include-all": "^1.0.0",
+    "lodash": "^4.17.11",
     "rc": "1.0.1",
     "sails": "^0.12.13",
     "sails-disk": "~0.10.9"
